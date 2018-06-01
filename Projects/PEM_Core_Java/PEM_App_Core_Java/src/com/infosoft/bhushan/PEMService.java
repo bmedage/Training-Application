@@ -187,7 +187,22 @@ public class PEMService {
 
 	private void onYearlyExpenseList() {		
 		System.out.println("Yearly Expense Listing..........");
+		Map<Integer, Float> resultMap=reportservice.calculateYearlyTotal();
 		
+		Set<Integer> years=resultMap.keySet();
+		 
+		Float total=0.0F;
+		 
+		 for (Integer year : years) {
+			 Float exp=resultMap.get(year);
+			 total=total+exp;
+			 System.out.println(year+ ": "+exp);
+			
+		}
+		 
+		 System.out.println("--------------------------");
+		 System.out.println("Total Expense(INR)"+total);
+		 
 		
 	}
 
@@ -198,9 +213,15 @@ public class PEMService {
 		 
 		 Set<String> keys=resultMap.keySet();
 		 
+		 
+		 
 		 for (String yearMonth : keys) {
 			 
-			 System.out.println(yearMonth+ " : "+resultMap.get(yearMonth));
+			 String [] arr= yearMonth.split(",");
+			 String year=arr[0];
+			 Integer monthNo=new Integer(arr[1]);
+			 String monthName=DateUtil.getMonthName(monthNo);
+			 System.out.println(year+ " : "+ monthName +" : "+resultMap.get(yearMonth));
 			
 		}
 		 

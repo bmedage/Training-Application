@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateUtil {
+	
+	public static String[] MONTHS={"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	public static Date stringToDate(String dateInString){
 		SimpleDateFormat df=new SimpleDateFormat("dd/MM/yyyy");
 		try {
@@ -22,7 +24,17 @@ public class DateUtil {
 
 	
 	public static String getYearAndMonth(Date date){
-		SimpleDateFormat df=new SimpleDateFormat("yyyy, MM");
+		SimpleDateFormat df=new SimpleDateFormat("yyyy,MM");
 		return df.format(date);		
+	}
+	
+	
+	public static Integer getYearFromDate(Date date){
+		SimpleDateFormat df=new SimpleDateFormat("yyyy");
+		return new Integer(df.format(date));		
+	}
+	
+	public static String getMonthName(Integer monthNo){
+		return MONTHS[ monthNo-1];
 	}
 }
