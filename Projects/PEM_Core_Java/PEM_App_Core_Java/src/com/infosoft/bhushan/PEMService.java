@@ -1,7 +1,13 @@
 package com.infosoft.bhushan;
 
 import java.beans.IntrospectionException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -40,9 +46,13 @@ public class PEMService {
 	 * This Constructor create object of PEMService and load Default values
 	 */
 	public PEMService() {
+		
+		restoreRepository();
 		//prepareSampleData();
 	}
 	
+	
+
 	/**
 	 * This methods prepare menu using switch case
 	 */
@@ -89,7 +99,7 @@ public class PEMService {
 				break;
 				
 			case 0:
-				menuExit();
+				onExit();
 				break;
 
 			
@@ -119,12 +129,92 @@ public class PEMService {
 	
 	
 	/**
-	 * This Method is Used for stop the JVM. It's closing PEM Application
+	 * This Method is Used for stop the JVM.and fetch data if available. It's closing PEM Application
 	 */
-	private void menuExit() {
+	private void onExit() {
+		
+		persistRepository();
 		System.exit(0);
 	}
 
+	/**
+	 * Store the data in respective files
+	 */
+	private void persistRepository() {
+		
+	serialize("expenses.ser", repository.expList);	
+	serialize("categories.ser", repository.catList);	
+		
+	}
+	
+	
+	/**
+	 * Write objects in file
+	 * @param file
+	 * @param obj
+	 */
+	public void serialize(String file , Object obj){
+		try {
+			FileOutputStream fos=new FileOutputStream(file);
+			
+			ObjectOutputStream oos=new ObjectOutputStream(fos);
+			
+			oos.writeObject(obj);
+			
+			
+			oos.close();
+			fos.close();
+		} catch (Exception ex) {
+			
+			ex.printStackTrace();
+			//System.out.println("No existing Data");
+			
+		}
+	}
+
+	/**
+	 * Get fetch From Repository
+	 */
+	private void restoreRepository() {
+		List<Expense> expList=(List<Expense>) deser("expenses.ser");
+		List<Category> catList=(List<Category>) deser("categories.ser");
+		
+		if(expList!=null){
+			repository.expList=expList;
+		}
+		
+		
+		if(catList!=null){
+			repository.catList=catList;
+		}
+	}
+	
+	
+	/**
+	 * Fetch the data for objects
+	 * @param file
+	 * @return
+	 */
+	public Object deser(String file){
+		try {
+			FileInputStream fis=new FileInputStream(file);
+			
+			ObjectInputStream ois=new ObjectInputStream(fis);
+			
+			Object obj=ois.readObject();
+			
+			
+			return obj;
+			  
+			
+		} catch (Exception e) {
+			 
+			//e.printStackTrace();
+			
+			System.out.println("No existing Data");
+			return null;
+		}
+	}
 	/**
 	 * This method  Lists the Expense which is stored by the user
 	 */
@@ -381,9 +471,12 @@ public class PEMService {
 			Thread.sleep(10);
 		} catch (InterruptedException ex) {
 			
-			ex.printStackTrace();
+			//ex.printStackTrace();
+			System.out.println("No existing Data");
 		}
 		
 	}
 	
+	
+
 }

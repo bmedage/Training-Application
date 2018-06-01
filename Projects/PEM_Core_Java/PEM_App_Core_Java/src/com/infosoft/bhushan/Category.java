@@ -1,11 +1,14 @@
 package com.infosoft.bhushan;
+
+import java.io.Serializable;
+
 /**
  * This is domain class for Category
  * @author Bhushan Medage
  *
  */
 
-public class Category {
+public class Category implements Serializable{
 	
 	/**
 	 * This is simply system genrated unique code for Id
