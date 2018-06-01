@@ -55,4 +55,34 @@ public class ReportService {
 	}
 	
 	
+	public Map<String, Float> calculateCategorizedTotal(){
+		
+		Map<String, Float> m=new TreeMap();
+		
+		for (Expense exp : repository.expList) {
+		   Long categoryId=exp.getCagetoryId();
+		   
+		   String catName=this.getCategoryNameById(categoryId);
+			if(m.containsKey(catName)){
+				Float total=m.get(catName);
+				total=(float) (total + exp.getAmount());
+				m.put(catName, total);
+			}
+			else{
+				m.put(catName, (float) exp.getAmount());
+			}
+			
+		}
+		return m;
+	}
+	
+	
+	public String getCategoryNameById(Long cagetoryId) {
+		for(Category category: repository.catList){
+			if(category.getCategoryId()==cagetoryId){
+				return category.getName();
+			}
+		}
+		return null; // if category id is not found
+	}	
 }
