@@ -1,5 +1,6 @@
 package com.infosoft.bhushan;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -11,23 +12,58 @@ public class PEMService {
 	
 	private Scanner input=new Scanner(System.in);
 	private Integer choice;
-		
+	
+	
+	
 	public void showMenu(){
 		
 		while(true){
 			
 			printMenu();
 			
-			switch (choice) {
+			switch (choice) {			
 			case 1:
-				System.out.println("Adding catagory.........!");
+				onAddCategory();
+				pressAnyKeyToContinue();
+				break;
+				
+			case 2:
+				onCategoryList();
+				pressAnyKeyToContinue();
+				break;
+				
+			case 3:
+				onExpenseEntry();
+				pressAnyKeyToContinue();
+				break;
+				
+			case 4:
+				onExpenseList();
+				pressAnyKeyToContinue();
+				break;
+				
+			case 5:
+				onMonthlyExpenseList();
+				pressAnyKeyToContinue();
+				break;
+				
+			case 6:
+				onYearlyExpenseList();
+				pressAnyKeyToContinue();
+				break;
+				
+			case 7:
+				onCategorizedExpenseList();
+				pressAnyKeyToContinue();
 				break;
 				
 			case 0:
-				System.exit(0);
+				menuExit();
 				break;
-			}
 
+			
+			}
+			
 		}
 	}
 
@@ -47,5 +83,58 @@ public class PEMService {
 				choice=input.nextInt();
 	}
 	
+	private void menuExit() {
+		System.exit(0);
+	}
+
+	
+	private void onExpenseList() {
+		System.out.println("Expense Listing.......");
+	}
+
+	
+	private void onExpenseEntry() {
+		System.out.println("Add Detail for Expense Entry.......");
+	}
+
+	private void onCategoryList() { 
+		System.out.println("Category Listing.......");
+				
+	}
+
+	private void onAddCategory() {		
+		
+		System.out.println("Adding  Category .... ");
+		
+	}
+	
+	
+		
+	private void onCategorizedExpenseList() {		
+		System.out.println("Categorized Expense Listing..........");
+		
+	}
+
+	private void onYearlyExpenseList() {		
+		System.out.println("Yearly Expense Listing..........");
+		
+		
+	}
+
+	private void onMonthlyExpenseList() {		
+		System.out.println("Monthly Expense Listing..........");
+		
+	}
+	private void pressAnyKeyToContinue() {
+		try {
+			System.out.println("Press any key to continue ......");
+			System.in.read();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+			
+	}
+
 	
 }
