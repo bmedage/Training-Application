@@ -20,4 +20,9 @@ public class DateUtil {
 		return df.format(date);		
 	}
 
+	
+	public static String getYearAndMonth(Date date){
+		SimpleDateFormat df=new SimpleDateFormat("yyyy, MM");
+		return df.format(date);		
+	}
 }

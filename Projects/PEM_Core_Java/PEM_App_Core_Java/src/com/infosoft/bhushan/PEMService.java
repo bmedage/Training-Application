@@ -1,9 +1,12 @@
 package com.infosoft.bhushan;
 
+import java.beans.IntrospectionException;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * 
@@ -12,12 +15,15 @@ import java.util.Scanner;
  */
 public class PEMService {
 	
-	Repository repository=Repository.getRepository();
+	private Repository repository=Repository.getRepository();
+	private ReportService reportservice=new ReportService();
 	
 	private Scanner input=new Scanner(System.in);
 	private Integer choice;
 	
-	
+	public PEMService() {
+		prepareSampleData();
+	}
 	
 	public void showMenu(){
 		
@@ -186,7 +192,20 @@ public class PEMService {
 	}
 
 	private void onMonthlyExpenseList() {		
-		System.out.println("Monthly Expense Listing..........");
+		System.out.println("Monthly Expense And Total..........");
+		
+		 Map<String, Float> resultMap=reportservice.calculateMonthlyTotal();
+		 
+		 Set<String> keys=resultMap.keySet();
+		 
+		 for (String yearMonth : keys) {
+			 
+			 System.out.println(yearMonth+ " : "+resultMap.get(yearMonth));
+			
+		}
+		 
+		
+		 
 		
 	}
 	private void pressAnyKeyToContinue() {
@@ -200,5 +219,79 @@ public class PEMService {
 			
 	}
 
+	
+	public void prepareSampleData(){
+		
+		Category catParty=new Category("Party");
+		delay();
+		
+		Category catShopping=new Category("Shopping");
+		delay();
+		
+		Category catGift=new Category("Gift");
+		delay();
+		
+		
+		repository.catList.add(catParty);
+		repository.catList.add(catShopping);
+		repository.catList.add(catGift);
+		
+		//jan-2016
+		Expense e1= new Expense(catParty.getCategoryId(),1000.0F,DateUtil.stringToDate("01/01/2016"),"N/A");
+		delay();
+		Expense e2= new Expense(catParty.getCategoryId(),2000.0F,DateUtil.stringToDate("02/01/2016"),"N/A");
+		delay();
+		
+		//jan-2016
+		Expense e3= new Expense(catShopping.getCategoryId(),500.0F,DateUtil.stringToDate("01/02/2016"),"N/A");
+		delay();
+		Expense e4= new Expense(catShopping.getCategoryId(),100.0F,DateUtil.stringToDate("02/02/2016"),"N/A");
+		delay();
+		
+		
+		
+		//dec-2016
+		Expense e5= new Expense(catGift.getCategoryId(),700.0F,DateUtil.stringToDate("01/12/2016"),"N/A");
+		delay();
+		
+		
+		
+		//jan-2017
+		Expense e6= new Expense(catParty.getCategoryId(),1500.0F,DateUtil.stringToDate("01/01/2017"),"N/A");
+		delay();
+		
+		//Feb-2017
+		Expense e7= new Expense(catShopping.getCategoryId(),200.0F,DateUtil.stringToDate("01/02/2017"),"N/A");
+		
+		
+		
+		//March-2017
+		Expense e8= new Expense(catGift.getCategoryId(),1800.0F,DateUtil.stringToDate("01/03/2017"),"N/A");
+		
+		
+		
+		repository.expList.add(e1);
+		repository.expList.add(e2);
+		repository.expList.add(e3);
+		repository.expList.add(e4);
+		repository.expList.add(e5);
+		repository.expList.add(e6);
+		repository.expList.add(e7);
+		repository.expList.add(e8);
+		
+			
+		
+	}
+	
+	
+	public void delay(){
+		try {
+			Thread.sleep(10);
+		} catch (InterruptedException ex) {
+			
+			ex.printStackTrace();
+		}
+		
+	}
 	
 }
