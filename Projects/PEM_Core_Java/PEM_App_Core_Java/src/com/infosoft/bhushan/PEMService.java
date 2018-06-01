@@ -1,6 +1,7 @@
 package com.infosoft.bhushan;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -92,12 +93,58 @@ public class PEMService {
 
 	
 	private void onExpenseList() {
+		
 		System.out.println("Expense Listing.......");
+		
+		List<Expense> expList=repository.expList;
+		
+		for(int i=0;i<expList.size();i++){
+			Expense expense=expList.get(i);
+			String categoryName=getCategoryNameById(expense.getCagetoryId());
+			System.out.println((i+1)+". "+categoryName+", "+expense.getAmount()+", "+expense.getRemark()+", "+expense.getDate());
+		}
 	}
 
-	
+	 String getCategoryNameById(Long cagetoryId) {
+		for(Category category: repository.catList){
+			if(category.getCategoryId()==cagetoryId){
+				return category.getName();
+			}
+		}
+		return null; // if category id is not found
+	}	
+	 
 	private void onExpenseEntry() {
 		System.out.println("Add Detail for Expense Entry.......");
+		onCategoryList();
+		
+		System.out.print("Enter Category : ");
+		int categoryChoice=input.nextInt();
+		
+				
+		Category selectedCategory=repository.catList.get(categoryChoice-1);
+		System.out.println("Your Choice is : "+selectedCategory.getName());
+		
+		System.out.println("Enter Amount : ");
+		Double expenseAmount=input.nextDouble();
+		input.nextLine();
+		
+		System.out.print("Enter Remark : ");
+		String expenseRemark=input.nextLine();
+		
+		
+		Date date=new Date();
+		
+		
+		Expense expense=new Expense();
+		expense.setAmount(expenseAmount);
+		expense.setRemark(expenseRemark);
+		expense.setDate(date);
+		expense.setCagetoryId(selectedCategory.getCategoryId());
+		
+		repository.expList.add(expense);
+		
+		System.out.println("Success : Expense detail added.....");
 	}
 
 	private void onCategoryList() { 
