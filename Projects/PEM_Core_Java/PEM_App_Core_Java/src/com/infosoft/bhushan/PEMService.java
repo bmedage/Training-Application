@@ -1,6 +1,7 @@
 package com.infosoft.bhushan;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -9,6 +10,8 @@ import java.util.Scanner;
  *
  */
 public class PEMService {
+	
+	Repository repository=Repository.getRepository();
 	
 	private Scanner input=new Scanner(System.in);
 	private Integer choice;
@@ -98,13 +101,23 @@ public class PEMService {
 	}
 
 	private void onCategoryList() { 
+		
 		System.out.println("Category Listing.......");
-				
+		List<Category> catList=repository.catList;
+		for(int i=0;i<catList.size();i++){
+			Category category=catList.get(i);
+			System.out.println((i+1)+". "+category.getName()+", "+category.getCategoryId());
+		}
 	}
 
 	private void onAddCategory() {		
 		
-		System.out.println("Adding  Category .... ");
+		input.nextLine();
+		System.out.print("Add Category Name : ");
+		String categoryName=input.nextLine();
+		Category category=new Category(categoryName);
+		repository.catList.add(category);
+		System.out.println("Success : Category Added....");	
 		
 	}
 	
