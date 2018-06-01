@@ -4,16 +4,34 @@ package com.infosoft.bhushan;
 import java.util.Date;
 
 /**
- * 
+ * This is Domain class for Expense
  * @author Bhushan Medage
  *
  */
 
 public class Expense {
+	/**
+	 * This is unique system generated id
+	 */
 	private Long expenseId = System.currentTimeMillis();
+	
+	/**
+	 * Represent  category id of Expense
+	 */
 	private Long cagetoryId;
+	
+	/**
+	 * Represent Amount of Expense
+	 */
 	private double amount;
+	/**
+	 * Represent Date of Expense
+	 */
 	private Date date;
+	
+	/**
+	 * Represent Remark of Expense
+	 */
 	private String remark;
 	
 	public Expense() {

@@ -1,13 +1,20 @@
 package com.infosoft.bhushan;
 /**
- * 
+ * This is domain class for Category
  * @author Bhushan Medage
  *
  */
 
 public class Category {
 	
+	/**
+	 * This is simply system genrated unique code for Id
+	 */
 	private Long categoryId=System.currentTimeMillis();
+	
+	/**
+	 * This is name of Category
+	 */
 	private String name;
 		
 

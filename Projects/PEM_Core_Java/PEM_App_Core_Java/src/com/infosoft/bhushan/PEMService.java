@@ -9,22 +9,43 @@ import java.util.Scanner;
 import java.util.Set;
 
 /**
+ * the class contains most of the methods of our PEM App.
+ * <p>
+ * This Class Prepare menu for various operation to be perform using this app.
  * 
+ * This class is uses<code>Repository </code> to store the data.
+ * Also using<code>ReportService</code> it genrate different type of report 
  * @author Bhushan Medage
  *
  */
 public class PEMService {
-	
+	/**
+	 * Declare reference of Repository by calling static method
+	 */
 	private Repository repository=Repository.getRepository();
+	
+	/**
+	 * Declare reference of Repository Service by calling static method
+	 */
 	private ReportService reportservice=new ReportService();
 	
+	/**
+	 * Declare Scanner object for taking input from user
+	 */
 	private Scanner input=new Scanner(System.in);
 	private Integer choice;
 	
+	
+	/**
+	 * This Constructor create object of PEMService and load Default values
+	 */
 	public PEMService() {
-		prepareSampleData();
+		//prepareSampleData();
 	}
 	
+	/**
+	 * This methods prepare menu using switch case
+	 */
 	public void showMenu(){
 		
 		while(true){
@@ -77,7 +98,9 @@ public class PEMService {
 		}
 	}
 
-	
+	/**
+	 * This methods print menu
+	 */
 	private void printMenu(){
 				System.out.println("------------PEM Menu------------");
 				System.out.println("1. Add Category");
@@ -93,11 +116,18 @@ public class PEMService {
 				choice=input.nextInt();
 	}
 	
+	
+	
+	/**
+	 * This Method is Used for stop the JVM. It's closing PEM Application
+	 */
 	private void menuExit() {
 		System.exit(0);
 	}
 
-	
+	/**
+	 * This method  Lists the Expense which is stored by the user
+	 */
 	private void onExpenseList() {
 		
 		System.out.println("Expense Listing.......");
@@ -113,7 +143,9 @@ public class PEMService {
 	}
 
 	  
-	 
+	 /**
+	  * This methods take Entry of Expense and save it to Repository
+	  */
 	private void onExpenseEntry() {
 		System.out.println("Add Detail for Expense Entry.......");
 		onCategoryList();
@@ -150,6 +182,11 @@ public class PEMService {
 		System.out.println("Success : Expense detail added.....");
 	}
 
+	
+	/**
+	 * This methods lists the category which is stored in Repository
+	 * It uses <code>Repository</code> to List Details
+	 */
 	private void onCategoryList() { 
 		
 		System.out.println("Category Listing.......");
@@ -160,6 +197,11 @@ public class PEMService {
 		}
 	}
 
+	
+	/**
+	 * This methods Add the category and store it in Repository
+	 * It uses <code>Repository</code> to add Details
+	 */
 	private void onAddCategory() {		
 		
 		input.nextLine();
@@ -172,7 +214,10 @@ public class PEMService {
 	}
 	
 	
-		
+	/**
+	 * This methods lists the category wise expense list which is stored in Repository
+	 * It uses <code>ReportService</code> to calculate report
+	 */
 	private void onCategorizedExpenseList() {		
 		System.out.println("Categorized Expense Listing..........");
 		
@@ -192,6 +237,11 @@ public class PEMService {
 		
 	}
 
+	
+	/**
+	 * This methods lists the yearly wise which is stored in Repository
+	 * It uses <code>ReportService</code> to calculate report
+	 */
 	private void onYearlyExpenseList() {		
 		System.out.println("Yearly Expense Listing..........");
 		Map<Integer, Float> resultMap=reportservice.calculateYearlyTotal();
@@ -213,6 +263,12 @@ public class PEMService {
 		
 	}
 
+	
+	/**
+	 * This methods lists the Monthly wise which is stored in Repository
+	 * 
+	 * It uses <code>ReportService</code> to calculate report
+	 */
 	private void onMonthlyExpenseList() {		
 		System.out.println("Monthly Expense And Total..........");
 		
@@ -232,10 +288,12 @@ public class PEMService {
 			
 		}
 		 
-		
-		 
-		
 	}
+	
+	
+	/**
+	 * This method call for to wait screen for user input
+	 */
 	private void pressAnyKeyToContinue() {
 		try {
 			System.out.println("Press any key to continue ......");
@@ -248,6 +306,9 @@ public class PEMService {
 	}
 
 	
+	/**
+	 * This methods store some dummy data for our application
+	 */
 	public void prepareSampleData(){
 		
 		Category catParty=new Category("Party");
@@ -311,6 +372,9 @@ public class PEMService {
 		
 	}
 	
+	/**
+	 * This method is used for sleep a thread for 10ms
+	 */
 	
 	public void delay(){
 		try {

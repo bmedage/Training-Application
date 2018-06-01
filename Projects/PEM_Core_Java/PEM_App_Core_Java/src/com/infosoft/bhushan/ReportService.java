@@ -3,12 +3,25 @@ package com.infosoft.bhushan;
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
-
+/**
+ * This class contain various methods for genrate the reports
+ * @author Bhushan Medage
+ *
+ */
 public class ReportService {
 
+	/**
+	 * Declare the reference of singleton Repository class
+	 */
 	Repository repository=Repository.getRepository();
 	
 	
+	
+	/**
+	 * This method calculate Expense report Monthly
+	 * It uses<code>Repository</code> for jaunting the report monthly
+	 * @return
+	 */
 	public Map<String, Float> calculateMonthlyTotal(){
 		
 		Map<String, Float> m=new TreeMap<>();
@@ -32,6 +45,12 @@ public class ReportService {
 	}
 	
 	
+	
+	/**
+	 * This method calculate Expense report Yearly
+	 * It uses<code>Repository</code> for jaunting the report yearly
+	 * @return
+	 */
 	public Map<Integer, Float> calculateYearlyTotal(){
 		
 		Map<Integer, Float> m=new TreeMap();
@@ -55,6 +74,11 @@ public class ReportService {
 	}
 	
 	
+	/**
+	 * This method calculate Expense report Category wise
+	 * It uses<code>Repository</code> for jaunting the report of category wise
+	 * @return
+	 */
 	public Map<String, Float> calculateCategorizedTotal(){
 		
 		Map<String, Float> m=new TreeMap();
@@ -76,7 +100,11 @@ public class ReportService {
 		return m;
 	}
 	
-	
+	/**
+	 * This method is used to find category name from category Id
+	 * @param cagetoryId
+	 * @return
+	 */
 	public String getCategoryNameById(Long cagetoryId) {
 		for(Category category: repository.catList){
 			if(category.getCategoryId()==cagetoryId){
