@@ -101,7 +101,8 @@ public class PEMService {
 		for(int i=0;i<expList.size();i++){
 			Expense expense=expList.get(i);
 			String categoryName=getCategoryNameById(expense.getCagetoryId());
-			System.out.println((i+1)+". "+categoryName+", "+expense.getAmount()+", "+expense.getRemark()+", "+expense.getDate());
+			String dateString=DateUtil.dateToString(expense.getDate());
+			System.out.println((i+1)+". "+categoryName+", "+expense.getAmount()+", "+expense.getRemark()+", "+dateString);
 		}
 	}
 
@@ -133,7 +134,10 @@ public class PEMService {
 		String expenseRemark=input.nextLine();
 		
 		
-		Date date=new Date();
+		System.out.print("Enter Date (dd/MM/yyyy) : ");
+		String dateAsString=input.nextLine();
+		
+		Date date=DateUtil.stringToDate(dateAsString);
 		
 		
 		Expense expense=new Expense();
