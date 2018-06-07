@@ -1,0 +1,68 @@
+.parallux-area {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.parallux-area .overlay-bg {
+  background: #222;
+  opacity: .3;
+}
+
+.parallux-area h2 {
+  color: #fff;
+  font-size: 36px;
+  font-weight: 100;
+}
+
+.parallux-area h2 span {
+  font-weight: 600;
+}
+
+.parallux-area p {
+  color: #fff;
+  margin-top: 20px;
+  margin-bottom: 25px;
+}
+
+
+
+div.image {
+   content:url('img/parallux-bg.jpg');
+}
+
+
+
+.bmm {
+   
+    width: 100%;
+    height: 100px;
+    background-color: powderblue;
+}
+
+
+
+.left-text {
+    float: left;
+    width: 530px;
+    /*height: 20px;*/
+    margin-right: 8px;
+     
+}
+.right-text {
+    float: left; 
+     width: 10px;
+    
+}
+
+.common-textarea {
+  border: 1px solid #8373ca;
+  width: 300px;
+  display: block;
+  background: white;
+  padding: 15px 25px;
+  color: #fff;
+  height: 20px;
+  resize: none;
+}
+

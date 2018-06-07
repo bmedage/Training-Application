@@ -1,0 +1,65 @@
+.second-area {
+  background-color: #fff;
+}
+
+.second-area h2 {
+  font-size: 36px;
+  font-weight: 100;
+}
+
+.second-area h2 span {
+  font-weight: 600;
+}
+
+.second-area p {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+
+
+@media (max-width: 768px) {
+  .feature-right {
+    margin-top: 50px;
+  }
+}
+
+
+.second-wrapper {
+  width: 68.75%;
+  margin: 0 auto;
+}
+
+@media (min-width: 1200px) {
+  .second-wrapper {
+    width: 80%;
+  }
+}
+
+media (max-width: 1199px) {
+  .second-wrapper {
+    width: 90%;
+  }
+}
+
+@media (max-width: 767px) {
+  .second-wrapper {
+    width: 97%;
+  }
+}
+
+
+
+.left-div {
+    float: left;
+    width: 500px;
+    height: 380px;
+    /*height: 20px;*/
+    margin-right: 8px;
+     background-color:antiquewhite;
+}
+.right-div {
+    float: right; 
+    
+    
+}

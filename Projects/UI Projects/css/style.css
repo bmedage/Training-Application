@@ -1,0 +1,186 @@
+body {
+  background: #4b379a;
+}
+
+.first-section {
+  width: 68.75%;
+  margin: 0 auto;
+  margin-top: 6rem;
+}
+
+@media (min-width: 1200px) {
+  .first-section {
+    width: 80%;
+  }
+}
+
+@media (max-width: 1199px) {
+  .first-section {
+    width: 90%;
+  }
+}
+
+@media (max-width: 767px) {
+  .first-section {
+    margin-top: 3rem;
+    width: 97%;
+  }
+}
+
+
+
+
+.top-area {
+  background: url(../img/header-bg.jpg) no-repeat center/contain;
+  background-size: cover;
+}
+
+.relative {
+  position: relative;
+}
+
+
+
+.container.fullwidth {
+  width: 100%;
+}
+
+.container.no-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.header-wrap {
+  position: relative;
+}
+
+
+.header-top {
+  padding: 15px 0;
+}
+
+@media (max-width: 767px) {
+  .header-top {
+    padding: 15px 0;
+  }
+}
+
+
+.first-area .height {
+  height: 540px;
+}
+
+.first-area .generic-height {
+  height: 400px;
+}
+
+.overlay-bg {
+  opacity: .9;
+}
+.p1-gradient-bg, .primary-btn:after, .overlay-bg, .owl-dot.active, .service-area .single-service .overlay-content {
+  background-image: -moz-linear-gradient(0deg, #fff 0%, #be5ede 100%);
+  background-image: -webkit-linear-gradient(0deg, #3224b0 0%, #be5ede 100%);
+  background-image: -ms-linear-gradient(0deg, #3224b0 0%, #be5ede 100%);
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+
+.first-content {
+  margin-top: 50px;
+}
+
+.first-content h1 {
+  font-size: 120px;
+  font-weight: 100;
+  line-height: 1.25em;
+  color: #fff;
+}
+
+.first-content h4 {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 3px;
+}
+
+
+
+.primary-btn {
+  line-height: 40px;
+  padding: 0 30px;
+  border-radius: 20px;
+  background: transparent;
+  border: 1px solid #fff;
+  color: #222222;
+  display: inline-block;
+  font-weight: 500;
+  position: relative;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+}
+
+
+
+.primary-btn:focus {
+  outline: none;
+}
+
+.primary-btn span {
+  color: #fff;
+  position: relative;
+  z-index: 2;
+}
+
+.primary-btn:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 20px;
+  opacity: 0;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  z-index: 1;
+}
+
+.primary-btn:hover {
+  color: aqua;
+  border: 1px solid transparent;
+}
+
+.primary-btn:hover:after {
+  opacity: 1;
+}
+
+.primary-btn.hover {
+  color: aqua;
+  border: 1px solid transparent;
+}
+
+.primary-btn.hover:after {
+  opacity: 1;
+}
+
+
+
+
+
+
