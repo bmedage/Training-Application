@@ -8,6 +8,11 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.infotech.pem.model.Expense;
 
+/**
+ *  This class provide functionality to add Expense data from database using row mapper
+ * @author Bhushan Medage
+ *
+ */
 public class CustomExpensesRowMapper implements RowMapper<Expense>{
 
 	public Expense mapRow(ResultSet rs, int i) throws SQLException {

@@ -51,7 +51,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<form action="./submitCategory.htm" method="post">
 			<div class="w3ls-icon">
 				<span class="fa fa-user" aria-hidden="true"></span>
-				<input type="text" class="lock" name="name" placeholder="catname" required="" />
+				<input type="text" class="lock" name="name" placeholder="Category Name" required="" />
 			</div>
 			
 									

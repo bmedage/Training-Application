@@ -20,10 +20,15 @@ import org.springframework.stereotype.Repository;
 import com.infotech.pem.dao.CategoryDao;
 import com.infotech.pem.model.Category;
 import com.infotech.pem.rowmapper.CustomCategoryRowMapper;
-import com.infotech.pem.util.JDBCUtil;
+
 
 import jdk.nashorn.internal.ir.RuntimeNode.Request;
-
+/**
+ * This class implements all methods interface of categorydao.
+ * This class is also perform database related operation
+ * @author Bhushan Medage
+ *
+ */
 @Repository("catdao")
 public class CategoryDaoImpl implements CategoryDao {
  
@@ -43,36 +48,29 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 	
 	
-	
+	/**
+	 * This method add the details of category into the database
+	 */
 	public int addCategory(Category category) {
-		String sql = "insert into categories(name,userid) values(?,?)";
-		
-		int i = jdbcTemplate.update(sql,new Object[] {category.getName(),category.getUserid()});
-				
+		String sql = "insert into categories(name,userid) values(?,?)";		
+		int i = jdbcTemplate.update(sql,new Object[] {category.getName(),category.getUserid()});				
 		if(i>0) {
 			return i;
 		}
 		return 0;
 	}
 
+	
+	/**
+	 * This method list category from database and store it into rowmapper 
+	 */
 	public List<Category> listAllCategory(String userid) {
-		String sql="select * from categories where userid=?";
-		
+		String sql="select * from categories where userid=?";		
 		List<Category> catlist=new ArrayList<Category>();
-		catlist=jdbcTemplate.query(sql, new CustomCategoryRowMapper(),userid);
-		
+		catlist=jdbcTemplate.query(sql, new CustomCategoryRowMapper(),userid);		
 		return catlist;
 	}
 
 
-	public int deleteCategory(Integer id) {
-		String DELETE = " DELETE FROM categories WHERE id=?";
-	    int i=jdbcTemplate.update(DELETE, id);
-		if(i>0) {
-			return i;
-		}
-		return 0;
-	}
-
-	
+		
 }

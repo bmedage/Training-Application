@@ -16,12 +16,18 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserDao dao;
 	
-	
+	/**
+	 * This method is register user. It accept parameter like name , email, username and password.
+	 */
 	public int userRegistration(User user) {
 		return	dao.insertUser(user);
 	}
 
 
+	/**
+	 * This method accept username and password and login in application. if username or password is
+	 *  incorrect it shows error.
+	 */
 	public User loginUser(String username) {
 	   return dao.loginUser(username);	
 	}

@@ -19,7 +19,13 @@ import com.infotech.pem.model.Category;
 import com.infotech.pem.model.Expense;
 import com.infotech.pem.model.User;
 import com.infotech.pem.service.CategoryService;
-
+/**
+ * This controller for Category.
+ * In this controller all Category related operation is to be managed
+ * like Add Category, List Category. 
+ * @author Bhushan Medage
+ *
+ */
 @Controller
 @RequestMapping("/user")
 public class CategoryController {
@@ -62,28 +68,5 @@ public class CategoryController {
 			return model;
 		}
 	 
-	 
-	 @RequestMapping(value="/deleteCategory.htm")
-		protected ModelAndView deleteCategory(HttpServletRequest request, HttpServletResponse response,@RequestParam("catid") int catid) throws Exception {
-			
-		 catservice.deleteCategory(catid);
-		 
-		 ModelAndView model = new ModelAndView("deleteCat");
-			String userid=session.getAttribute("username").toString();
-			List<Category> catlist = new ArrayList<Category>();			
-			catlist = catservice.listAllCategory(userid);			
-			model.addObject("catlist", catlist);
-			return model;
-		}
-	 
-	 @RequestMapping(value="/deleteCategoryProcess.htm")
-		protected ModelAndView deleteCategoryProcess(HttpServletRequest request, HttpServletResponse response) throws Exception {
-			 ModelAndView model = new ModelAndView("deleteCat");
-			String userid=session.getAttribute("username").toString();
-			List<Category> catlist = new ArrayList<Category>();			
-			catlist = catservice.listAllCategory(userid);			
-			model.addObject("catlist", catlist);
-			return model;
-		}
-	
+	 	
 }

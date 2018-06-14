@@ -47,7 +47,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 
 	<div class="login-section-agileits">
-		<h3 class="form-head">Login Here</h3>
+	<span class="message" style="font-size: 20px; color: #FF00FF;">${msg}</span><br><br>
+		<h3 class="form-head">Register Here</h3>
 		<form action="./submitUserRegister.htm" method="post">
 			<div class="w3ls-icon">
 				<span class="fa fa-user" aria-hidden="true"></span>

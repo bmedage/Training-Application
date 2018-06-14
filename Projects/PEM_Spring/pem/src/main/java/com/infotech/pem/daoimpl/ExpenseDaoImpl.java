@@ -24,12 +24,17 @@ import com.infotech.pem.model.Expense;
 import com.infotech.pem.rowmapper.CustomCategoryRowMapper;
 import com.infotech.pem.rowmapper.CustomExpensesRowMapper;
 import com.infotech.pem.rowmapper.CustomMonthlyExpenseRowMapper;
-import com.infotech.pem.util.JDBCUtil;
 
 
+/**
+ * This class implements all methods interface of expensedao.
+ * This class is also perform database related operation
+ * @author Bhushan Medage
+ *
+ */
 
 @Repository("expdao")
-public class ExpenseDaoImpl extends JDBCUtil implements ExpenseDao {
+public class ExpenseDaoImpl implements ExpenseDao {
 
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -47,26 +52,21 @@ public class ExpenseDaoImpl extends JDBCUtil implements ExpenseDao {
 	}
 	
 	
+	/**
+	 * This method add the details of expenses into the database
+	 */
 	public int addExpense(Expense expense) {
 		
 		 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MMM/yyyy");  
-		   LocalDateTime now = LocalDateTime.now();  
-		   System.out.println(dtf.format(now));
-		   
-		   String dt=dtf.format(now);
-		   
+		   LocalDateTime now = LocalDateTime.now(); 		  	   
+		   String dt=dtf.format(now);   
 		   
 		   String arr[]=dt.split("/");
 		   String month = null;
 		   String year = null;
-		   for (int i = 0; i < arr.length; i++) {
-					
-			 month=arr[1];
-			System.out.println("------------m"+month);
-			
-			year=arr[2];
-			System.out.println("-----------y"+year);
-		
+		   for (int i = 0; i < arr.length; i++) {					
+			 month=arr[1];						
+			year=arr[2];					
 		   }
 		   
 		String sql = "insert into expenses(name,catname,userid,amount,date,month,year) values(?,?,?,?,?,?,?)";
@@ -80,45 +80,58 @@ public class ExpenseDaoImpl extends JDBCUtil implements ExpenseDao {
 		
 	}
 
+	
+	/**
+	 * This method list the details of Expenses from database
+	 */
 	public List<Expense> listAllExpense(String userid) {
 		
-		String sql="select * from expenses where userid=?";
-		
+		String sql="select * from expenses where userid=?";		
 		List<Expense> explist=new ArrayList<Expense>();
-		explist=jdbcTemplate.query(sql, new CustomExpensesRowMapper(),userid);
-		
-		return explist;
+		explist=jdbcTemplate.query(sql, new CustomExpensesRowMapper(),userid);		
+		return explist;	
+	}
+
 	
-	}
 
+	/**
+	 * This method list monthly the details of Expenses from database 
+	 */
+	
 	public List<Expense> listMonthlyExpenses(String userid) {
-		String sql="SELECT  month,year,catname,SUM(amount) as 'total' FROM expenses where userid=? GROUP BY month ASC";
-		
+		String sql="SELECT  month,year,catname,SUM(amount) as 'total' FROM expenses where userid=? GROUP BY month ASC";		
 		List<Expense> explist=new ArrayList<Expense>();
-		explist=jdbcTemplate.query(sql, new CustomMonthlyExpenseRowMapper(),userid);
-		
+		explist=jdbcTemplate.query(sql, new CustomMonthlyExpenseRowMapper(),userid);		
 		return explist;
 	}
 
+	
+	/**
+	 * This method list yrarly the details of Expenses from database
+	 */
 	public List<Expense> listYearlyExpenses(String userid) {
-		String sql="SELECT  month,year,catname,SUM(amount) as 'total' FROM expenses where userid=? GROUP BY year ASC";
-		
+		String sql="SELECT  month,year,catname,SUM(amount) as 'total' FROM expenses where userid=? GROUP BY year ASC";		
 		List<Expense> explist=new ArrayList<Expense>();
-		explist=jdbcTemplate.query(sql, new CustomMonthlyExpenseRowMapper(),userid);
-		
+		explist=jdbcTemplate.query(sql, new CustomMonthlyExpenseRowMapper(),userid);		
 		return explist;
 	}
+	
+	
+	/**
+	 * This method list category wise the details of Expenses from database
+	 */
 
 	public List<Expense> listCategoryWise(String userid) {
-		String sql="SELECT  month,year,catname,SUM(amount) as 'total' FROM expenses where userid=? GROUP BY catname ASC";
-		
+		String sql="SELECT  month,year,catname,SUM(amount) as 'total' FROM expenses where userid=? GROUP BY catname ASC";		
 		List<Expense> explist=new ArrayList<Expense>();
-		explist=jdbcTemplate.query(sql, new CustomMonthlyExpenseRowMapper(),userid);
-		
+		explist=jdbcTemplate.query(sql, new CustomMonthlyExpenseRowMapper(),userid);		
 		return explist;
 	}
 
 
+	/**
+	 * This method delete the details of Expenses from database depending on expense id
+	 */
 	public int deleteExpenses(Integer id) {
 		String DELETE = " DELETE FROM expenses WHERE id=?";
 	    int i=jdbcTemplate.update(DELETE, id);

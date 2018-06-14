@@ -22,12 +22,17 @@ import org.springframework.stereotype.Repository;
 import com.infotech.pem.dao.UserDao;
 import com.infotech.pem.model.User;
 import com.infotech.pem.rowmapper.CustomUserRowMapper;
-import com.infotech.pem.util.JDBCUtil;
 
 
+/**
+ * This class implements all methods interface of userdao.
+ * This class is also perform database related operation
+ * @author Bhushan Medage
+ *
+ */
 
 @Repository("dao")
-public class UserDaoImpl extends JDBCUtil implements UserDao {
+public class UserDaoImpl implements UserDao {
 
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -46,7 +51,9 @@ public class UserDaoImpl extends JDBCUtil implements UserDao {
 	
 	
 	
-	
+	/**
+	 * This method is register user. It store the details of user into database.
+	 */
 	public int insertUser(User user) {
 		String sql = "insert into users(name,email,userid,address,loginName,password) values(?,?,?,?,?,?)";
 		System.out.println(user.getName());
@@ -59,11 +66,12 @@ public class UserDaoImpl extends JDBCUtil implements UserDao {
 	}
 
 
+	/**
+	 * This method perform operation for login. and add  the detail into row mapper 
+	 */
 	public User loginUser(String username) {
 		String sql=null;
-		User user = null;
-		
-			
+		User user = null;			
 				sql = "select * from users where loginName = ? ";
 				user = new User();
 				user=jdbcTemplate.queryForObject(sql, new CustomUserRowMapper(), username);

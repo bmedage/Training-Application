@@ -13,7 +13,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.infotech.pem.model.User;
 import com.infotech.pem.service.UserService;
-
+/**
+ * This controller for user.
+ * In this controller all user related operation is to be managed
+ * like login,Register etc. 
+ * @author Bhushan Medage
+ *
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -35,8 +41,7 @@ public class UserController {
 	  }
 	
 	@RequestMapping(value="/login.htm", method=RequestMethod.GET)
-	  public ModelAndView showloginPage(){
-		
+	  public ModelAndView showloginPage(){		
 		 ModelAndView model=new ModelAndView("login");
 		 return model;
 	  }
@@ -44,21 +49,32 @@ public class UserController {
 	 
 	 
 	 @RequestMapping(value="/userRegister.htm", method=RequestMethod.GET)
-	  public ModelAndView showRegisterPage(){
-		
+	  public ModelAndView showRegisterPage(){		
 		 ModelAndView model=new ModelAndView("registration");
 		 return model;
 	  }
 	
 	
 	 @RequestMapping(value="/submitUserRegister.htm", method=RequestMethod.POST)
-	  public ModelAndView submitUserRegisterPage( User user){
-		 	
-		 service.userRegistration(user);
-		 ModelAndView model=new ModelAndView("login");
-		 model.addObject("msg","User Registration Success...!");
-		
-		 return model;
+	  public ModelAndView submitUserRegisterPage( User user,@RequestParam("loginName")String loginName){		 	
+				 
+		 try{
+			 user=service.loginUser(loginName);
+			 }
+			 catch(Exception e){
+				 service.userRegistration(user);
+				 ModelAndView model=new ModelAndView("login");
+				 model.addObject("msg","Registration Success....!");
+				 return model;
+			 }
+			 if(user.getLoginName().equals(loginName)){				 
+			 ModelAndView model=new ModelAndView("registration");
+			 model.addObject("msg"," Login Name Already present Please Enter another Login Name...!");
+			 return model;
+			 }
+			 ModelAndView model=new ModelAndView("login");
+			 model.addObject("msg","Registration Success....!");
+			 return model;		 
 	  }
 	 
 	 
@@ -83,8 +99,7 @@ public class UserController {
 		 model.addObject("msg",session.getAttribute("name"));
 		 return model;
 		 }
-		 else {
-			 
+		 else {			 
 			 ModelAndView model=new ModelAndView("login");
 			 model.addObject("msg","Wrong username or Password...!!");
 			 return model;

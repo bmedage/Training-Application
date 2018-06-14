@@ -18,19 +18,22 @@ public class CategoryServiceImpl implements CategoryService {
 	CategoryDao categorydao;
 	
 
+	/**
+	 * This method call addCategory method of CategoryDao class
+	 */
 	public int addCategory(Category category) {
-		return categorydao.addCategory(category);
-		
+		return categorydao.addCategory(category);		
 	}
 
+	
+	
+	/**
+	 * This method call listCategory method of CategoryDao class
+	 */
 	public List<Category> listAllCategory(String userid) {
 		return categorydao.listAllCategory(userid);
 	}
 
-	public int deleteCategory(Integer id) {
-		return categorydao.deleteCategory(id);
-	}
-	
-	
+		
 
 }

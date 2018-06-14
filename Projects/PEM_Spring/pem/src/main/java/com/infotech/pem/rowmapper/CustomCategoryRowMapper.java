@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import com.infotech.pem.model.Category;
 
 /**
- * This class provide functionality to add issue data from database using row mapper
+ * This class provide functionality to add Category data from database using row mapper
  * @author Bhushan Medage
  *
  */

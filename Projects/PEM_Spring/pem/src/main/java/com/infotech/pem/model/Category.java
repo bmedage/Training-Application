@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class Category implements Serializable{
 	
 	/**
-	 * This is simply system genrated unique code for Id
+	 * This is category id which is auto genrated
 	 */
 	private int categoryId;
 	
@@ -54,9 +54,6 @@ public class Category implements Serializable{
 		
 	}	
 	
-	
-
-
 	public String getName() {
 		return name;
 	}

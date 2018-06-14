@@ -1,27 +1,28 @@
 package com.infotech.pem.model;
 
+/**
+ * This is model class for user. It take data for instance variable.
+ * @author Bhushan Medage
+ *
+ */
 public class User {
-	private String loginName;
-	private String password;
-	public boolean valid;
-	private int userid;
+	
+	/**
+	 * This is name of user
+	 */
 	private String name;
 	
+	/**
+	 * This is username of user
+	 */
+	private String loginName;
 	
-	public boolean isValid() {
-        return valid;
-	}
-
-     public void setValid(boolean newValid) {
-        valid = newValid;
-	}	
-	public int getUserid() {
-		return userid;
-	}
-	public void setUserid(int userid) {
-		this.userid = userid;
-	}
-	public String getName() {
+	/**
+	 * This is password for user
+	 */
+	private String password;
+	
+		public String getName() {
 		return name;
 	}
 	public void setName(String name) {
@@ -54,5 +55,21 @@ public class User {
 		this.password = password;
 	}
 	
+	public boolean valid;
+	private int userid;	
+	
+	public boolean isValid() {
+        return valid;
+	}
+
+     public void setValid(boolean newValid) {
+        valid = newValid;
+	}	
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
 
 }

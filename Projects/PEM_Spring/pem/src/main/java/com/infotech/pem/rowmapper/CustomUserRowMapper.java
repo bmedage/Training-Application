@@ -16,17 +16,14 @@ import com.infotech.pem.model.User;
  */
 
 public class CustomUserRowMapper implements RowMapper<User> {
-
-	public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-		
+	public User mapRow(ResultSet rs, int rowNum) throws SQLException {		
 		User user = new User();
 	    user.setUserid(rs.getInt(1));
 	    user.setName(rs.getString("name"));
 	    user.setEmail(rs.getString("email"));
 	    user.setAddress(rs.getString("address"));
 	    user.setLoginName(rs.getString("loginName"));    
-	    user.setPassword(rs.getString("password"));	   
-		
+	    user.setPassword(rs.getString("password"));	
 		return user;
 	}
 
